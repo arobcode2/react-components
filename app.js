@@ -21,20 +21,41 @@ var Oranges = () => (
   <div>2 Oranges $0.25</div>
 );
 
-var GroceryListItems = () => (
+var GroceryListItems = () => {
+  var groceryItems = ['Bananas', 'Strawberries', 'Watermelon'];
+  return (
+  
   <div>
-    <GroceryListItem items = {['Bananas', 'Strawberries', 'Watermelon']}/>
+    {groceryItems.map((item, index) => <GroceryListItem key={index}item = {item}/> )}
   </div>
-);
+)};
 
 class GroceryListItem extends React.Component {
   constructor(props) {
     super(props);
+    
+    this.state = {
+      done: false
+    };
+    
+    this.onGroceryListItemHover = this.onGroceryListItemHover.bind(this);
   }
   
+  onGroceryListItemHover() {
+    this.setState({
+      done: !this.state.done
+    });
+  }  
+  
   render() {
+    var style = {
+      fontWeight: this.state.done ? 'bold' : 'normal'
+      //textDecoration: this.state.done ? 'line-through' : 'none'
+    };
     return (
-      <ul>{this.props.items.map((item, index) => <li key={index}>{item}</li>)}</ul>
+      <li style={style} onMouseEnter={this.onGroceryListItemHover}>
+        {this.props.item}
+      </li>
     );
   }
 }
