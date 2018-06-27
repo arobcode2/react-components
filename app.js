@@ -27,10 +27,21 @@ var GroceryListItems = () => (
   </div>
 );
 
-var GroceryListItem = (props) => (
-  <ul>
-    {props.items.map((item, index) => <li key={index}>{item}</li>)}
-  </ul>
-);
+class GroceryListItem extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  
+  render() {
+    return (
+      <ul>{this.props.items.map((item, index) => <li key={index}>{item}</li>)}</ul>
+    );
+  }
+}
+
+  //<ul>
+    //{props.items.map((item, index) => <li key={index}>{item}</li>)}
+  //</ul>
+//);
 
 ReactDOM.render(<App />, document.getElementById('app'));
